@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas
 
 st.set_page_config(layout="wide")
 
@@ -10,8 +11,33 @@ with col1:
 with col2:
     st.title("John Smith")
     content = """
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi tristique, mattis purus ut, congue nunc. Suspendisse urna nulla, fermentum eget leo sit amet, mollis finibus risus. Vivamus eleifend, nulla vitae rhoncus ultrices, velit quam luctus leo, nec tincidunt orci mi in massa. Vestibulum posuere semper neque sed posuere. Nulla imperdiet convallis tristique. Maecenas ut cursus magna. Sed et tempus velit. Suspendisse urna neque, eleifend et nibh vel, viverra lobortis urna. Nullam id lectus quis enim sollicitudin egestas. Nullam placerat porta enim. Nulla nec arcu molestie, gravida ex nec, tempus ante.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi tristique, 
+        mattis purus ut, congue nunc. Suspendisse urna nulla, fermentum eget leo sit amet, 
+        mollis finibus risus. Vivamus eleifend, nulla vitae rhoncus ultrices, velit quam 
+        luctus leo, nec tincidunt orci mi in massa. Vestibulum posuere semper neque sed posuere. 
+        Nulla imperdiet convallis tristique. Maecenas ut cursus magna. Sed et tempus velit. 
+        Suspendisse urna neque, eleifend et nibh vel, viverra lobortis urna. 
+        Nullam id lectus quis enim sollicitudin egestas. Nullam placerat porta enim. 
+        Nulla nec arcu molestie, gravida ex nec, tempus ante.
     """
     st.info(content)
 
-st.write("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in mi tristique, mattis purus ut, congue nunc. Suspendisse urna nulla, fermentum eget leo sit amet, mollis finibus risus. Vivamus eleifend, nulla vitae rhoncus ultrices, velit quam luctus leo, nec tincidunt orci mi in massa.")
+content2 = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+         "Donec in mi tristique, mattis purus ut, congue nunc. "
+         "Suspendisse urna nulla, fermentum eget leo sit amet, mollis finibus risus. "
+         "Vivamus eleifend, nulla vitae rhoncus ultrices, velit quam luctus leo, "
+         "nec tincidunt orci mi in massa."""
+st.write(content2)
+
+
+col3, col4 = st.columns(2)
+df = pandas.read_csv("data.csv", ";")
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row['title'])
+
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row['title'])
